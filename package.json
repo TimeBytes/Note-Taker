@@ -1,0 +1,23 @@
+{
+  "name": "note-taker",
+  "version": "1.0.0",
+  "description": "note taking webpage",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TimeBytes/Note-Taker.git"
+  },
+  "author": "TimeBytes",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/TimeBytes/Note-Taker/issues"
+  },
+  "homepage": "https://github.com/TimeBytes/Note-Taker#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}
