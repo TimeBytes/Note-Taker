@@ -1,15 +1,21 @@
+// importing modules
 const notes = require("express").Router();
 const fs = require("fs");
 const { promisify } = require("util");
 const readFile = promisify(fs.readFile);
 const writeFile = promisify(fs.writeFile);
 
+// get route, gets the data from db.json and sends back status 200 with the data
 notes.get("/", (req, res) => {
-  readFile("./db/db.json", "utf8").then((data) =>
-    res.status(200).json(JSON.parse(data))
-  );
+  readFile("./db/db.json", "utf8")
+    .then((data) => res.status(200).json(JSON.parse(data)))
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({ error: "Server error" });
+    });
 });
 
+// post route, takes the req, data and saves it to db.json
 notes.post("/", (req, res) => {
   readFile("./db/db.json", "utf8")
     .then((data) => {
@@ -33,6 +39,7 @@ notes.post("/", (req, res) => {
     });
 });
 
+// delete route, using the id parameter, loops through the list of objects, finds the entry that matches the id and removes it fromt he list, then saves the data back into db.sjon
 notes.delete("/:id", (req, res) => {
   readFile("./db/db.json", "utf8")
     .then((data) => {
@@ -58,4 +65,5 @@ notes.delete("/:id", (req, res) => {
     });
 });
 
+// export notes
 module.exports = notes;
